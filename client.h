@@ -2,7 +2,7 @@
 #define CLIENT_H
 
 #include <QMainWindow>
-#include <qcorotask.h> // Include QCoro core
+#include <qcorotask.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class client; }
@@ -15,10 +15,12 @@ public:
     client(QWidget *parent = nullptr);
     ~client();
 
-private:
+private slots:
     void on_sendButton_clicked();
 
-    // The coroutine that will handle the network operation without blocking the UI
+private:
+    Ui::client *ui;
+
     QCoro::Task<void> sendNetworkMessage(QString host, quint16 port, QString message);
 };
 
