@@ -4,6 +4,7 @@
 #include <QCoro/QCoroNetwork> // Required to await QTcpSocket
 #include <QMessageBox>        // Required for UI feedback
 #include <QDebug>
+#include <QPushButton>
 
 client::client(QWidget *parent)
     : QMainWindow(parent)
@@ -11,6 +12,7 @@ client::client(QWidget *parent)
 {
     ui->setupUi(this);
 }
+
 
 client::~client()
 {
@@ -48,6 +50,8 @@ QCoro::Task<void> client::sendNetworkMessage(QString host, quint16 port, QString
 
 void client::on_sendButton_clicked()
 {
+    qDebug() << "Send button clicked";
+
     QString host = "127.0.0.1";
     quint16 port = 54321;
     QString message = ui->messagelineEdit->text();
